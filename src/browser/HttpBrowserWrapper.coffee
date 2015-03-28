@@ -4,6 +4,27 @@ module.exports = class HttpBrowserWrapper
         @requester = requester if requester?
 
     request: (params, callback) ->
+
+        initXMLHttpClient = ->
+          xmlhttp = undefined
+          try
+            # Modern Browsers
+            xmlhttp = new XMLHttpRequest
+          catch e
+            # Legacy Browsers
+            XMLHTTP_IDS = new Array('MSXML2.XMLHTTP.5.0', 'MSXML2.XMLHTTP.4.0', 'MSXML2.XMLHTTP.3.0', 'MSXML2.XMLHTTP', 'Microsoft.XMLHTTP')
+            success = false
+            i = 0
+            while i < XMLHTTP_IDS.length and !success
+              try
+                xmlhttp = new ActiveXObject(XMLHTTP_IDS[i])
+                success = true
+              catch e
+              i++
+            if !success
+              throw new Error('Unable to create XMLHttpRequest.')
+          xmlhttp
+
         params.method = "GET" unless params.method?
         params.host = params.hostname if (!params.host? and params.hostname?)
         params.scheme = window.location.protocol.split(':')[0] unless params.scheme? || !window?
@@ -26,7 +47,7 @@ module.exports = class HttpBrowserWrapper
 
 
         if (XMLHttpRequest?)
-            xmlhttp = new XMLHttpRequest
+            xmlhttp = initXMLHttpClient()
         else
             xmlhttp = @requester
         xmlhttp.open params.method , url ,true
