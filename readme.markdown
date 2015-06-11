@@ -8,25 +8,25 @@ This repository contains a Node-js client and a Browser based js client.
 
 For browser based HTML applications you get this client via Bower: (you will also need jquery)
 
-```
+```.sh-session
 bower install mojio-js
 bower install jquery
 ```
 
 Or via the Mojio CDN at https://djaqzxyxnyyiy.cloudfront.net
 
-```
+```.html
 <script src="https://djaqzxyxnyyiy.cloudfront.net/mojio-js.js"></script>
 ```
 Note that on the CDN, you can link to specific versions of the application if you want to avoid any updates:
-```
+```.html
 <script src="https://djaqzxyxnyyiy.cloudfront.net/3.5.0/mojio-js.js"></script>
 ```
 
 
 If you are in a node environment, use npm:
 
-```
+```.sh-session
 npm install mojio-js
 ```
 
@@ -48,7 +48,7 @@ test/login_test.coffee
 ### CoffeeScript:
 
 authorize.html
-```
+```.html
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +68,7 @@ authorize.html
 </body>
 ```
 authorize.coffee (compiles to authorize.js included in the html above)
-```
+```.coffee
 Mojio = @Mojio
 
 config = {
@@ -100,7 +100,7 @@ $( () ->
 On completion of the oauth login, the browser will be redirected to the given redirect_url on the host server or application.  The example's implementation which contains how to retrieve the logged in user and the authorization token is below: 
 
 authorize_complete.html
-```
+```.html
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,7 +124,7 @@ authorize_complete.html
 </body>
 ```
 authorize_complete.coffee (compiles to authorize_complete.js included in the html above)
-```
+```.js
 MojioClient = @MojioClient
 
 config = {
@@ -183,7 +183,7 @@ Any OAuth2 implementation for node js should probably work.  TODO: write example
 
 ### CoffeeScript:
 The old login is deprecated and will be removed in a few months:
-```
+```.js
 config = {
            application: 'YOUR APPLICATION KEY',
            secret: 'YOUR SECRET KEY',
@@ -197,7 +197,7 @@ mojio.login('YOUR USERNAME', 'YOUR PASSWORD', (error, result) ->
 )
 ```
 ### JavaScript
-```
+```.js
 var Mojio, mojio, config;
 
 config = {
@@ -231,15 +231,15 @@ the API will be migrating to OData style queries eventually and the SDK will ada
 
 Examples:
 No criteria-
-```
+```.js
 query(model, { limit=10, offset=0, sortby="name", desc=false }, callback)
  ```
 object based criteria-
-```
+```.js
 query(model, { criteria={ name="blah", field="blah" }, limit=10, offset=0, sortby="name", desc=false }, callback)
 ```
 string based field/value list criteria-
-```
+```.js
 query(model, { criteria="name=blah; field=blah;", limit=10, offset=0, sortby="name", desc=false }, callback)
 ```
 
@@ -263,7 +263,7 @@ The objects that can be observed are enumerated here: https://api.moj.io/v1/Sche
 See the test folder, test/observers_Test.coffee and test/conditional_observer_test.coffee for examples of the "observe" and "watch" methods respectively. Conditional observers can only be created with the "watch" call.
 
 Example of the "observe" method of vehicles:
-```
+```.js
 mojio_client.observe(vehicle, null,
     (entity) ->
         entity.should.be.an.instanceOf(Object)
@@ -277,7 +277,7 @@ mojio_client.observe(vehicle, null,
     )
 ```
 Example of the "watch" method with a conditional observer.
-```
+```.js
 observer = new Observer(
     {
         ObserverType: "Speed", Status: "Approved", SpeedLow: 80.0, Name: "Test"+Math.random(),
@@ -303,7 +303,7 @@ mojio_client.watch(observer,
 ```
 
 There are some observer types that can be created:
-```
+```.js
        Observer types:
            Generic = 0,
            Script = 1, // not implemented
@@ -321,7 +321,7 @@ Leading sends data when the condition transitions from low to high only.
 Trailing sends data when the condition transitions from high to low only.
 ```
 In addition to timing, the condition consists of a high and low value, or a location and radius test against data coming from the vehcile measures.
-```
+```.js
            GeoFence = 3,            if Vehicle Location within Location+Radius
            Conditional = 4,         General condition based on:  Field, Threshold1, Threshold2, Operator1, Operator2, Conjunction
            Speed = 5,               if Speed Low < data < Speed High
@@ -338,7 +338,7 @@ In addition to timing, the condition consists of a high and low value, or a loca
 ```
 
 These observers are created as follows:
-```
+```.js
 observer = new Observer(
                         {
                             ObserverType: "Speed", Status: "Approved", SpeedLow: 80.0, Name: "Test"+Math.random(),
@@ -347,7 +347,7 @@ observer = new Observer(
                     )
 ```
 These are experimental "smooth" observer types: These observers fill in the gaps between sample points based on a time factor.  They each take a "InterpolationRate, and a MaximumTimeForInterpolation value.  The interpolation is the desired time between sample points. The Maximum Time for Interpolation is used to make sure that interpolation of data points is not attempted for long periods of time. The default is five minutes.  The default Interpolation Rate is 1 second.
-```
+```.js
            SmoothVehicle = 16,
            SmoothEvent = 17,         // Not implemented
            SmoothTrip = 18,
@@ -359,14 +359,14 @@ All javascript client code is in the 'dist' directory.
 
 Code is generate first by running the generator in /src/generate.coffee. The generator makes a request to the schema REST endpoint and retrieves all the schemas for objects stored in the database and creates model files, calls to the REST endpoints in the client, and tests for those calls.
 
-```
+```.sh-session
 cd src
 coffee generate.coffee
 ```
 You can run "make.sh" to generate the coffeescript files from the templates.  Note that this also builds the javascript from the coffeescript and browserfies the code by calling build.sh.
 
 This creates:
-```
+```.sh-session
 browser/MojioClient.coffee
 nodejs/MojioClient.coffee
 models/Address.coffee
@@ -384,7 +384,7 @@ models/Vehicle.coffee
 ```
 
 These files are not created by the generator:
-```
+```.sh-session
 browser/HttpBrowserWrapper.coffee
 nodejs/HttpBrowserWrapper.coffee
 models/MojioModel.coffee
@@ -401,12 +401,12 @@ Browser based code must be "browserified" to work in a browser.
 If you need to manually recompile the code, the steps are:
 
 For nodejs code
-```
+```.sh-session
 coffee --map --compile src/nodejs
 cp src/nodejs/*.js lib/
 ```
 For browser code
-```
+```.sh-session
 coffee --map --compile src/browser
 cd src/browser
 browserify -r ./HttpBrowserWrapper.js --standalone HttpBrowserWrapper > ../../dist/browser/HttpBrowserWrapper.js
@@ -414,7 +414,7 @@ browserify -r ./MojioClient.js --standalone Mojio > ../../dist/browser/MojioClie
 ```
 
 You can also just run the builder by typing:
-```
+```.sh-session
 ./build.sh
 ```
 This will build the javascript and browserfy code.
