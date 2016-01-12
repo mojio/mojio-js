@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "iObservable.js",
+  "sourceRoot": "",
+  "sources": [
+    "iObservable.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;;AAAA"
+}

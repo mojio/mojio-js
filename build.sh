@@ -21,9 +21,9 @@ cd ../models
 ../../node_modules/.bin/browserify -r ./User.js --standalone User > ../../dist/browser/User.js
 ../../node_modules/.bin/browserify -r ./Vehicle.js --standalone Vehicle > ../../dist/browser/Vehicle.js
 cd ../../
-# copy the example, do this manually until references can be corrected with the move.
-# cp example/*.js dist/example
-# cp example/*.html dist/example
+# copy the mocha, do this manually until references can be corrected with the move.
+# cp mocha/*.js dist/mocha
+# cp mocha/*.html dist/mocha
 coffee --map --compile test
 
 cd dist/browser

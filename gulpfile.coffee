@@ -11,7 +11,7 @@ parallelize = require("concurrent-transform")
 
 threads = 100
 useSourceMaps = true
-coffeeFiles = ['./src/**/*.coffee','test/**/*.coffee','example/**/*.coffee']
+coffeeFiles = ['./src/**/*.coffee','test/**/*.coffee','mocha/**/*.coffee']
 
 handleError = (err) ->
     console.log(err.toString())

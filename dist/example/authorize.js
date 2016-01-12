@@ -11,7 +11,7 @@
   
   config =
       application: 'Your-Application-Key-Here' # Fill in your application key here
-      redirect_uri: 'Your-Logout-redirect_url-Here' # Fill in your redirect url here (Ex. 'http://localhost:63342/mojio-js/example/authorize.html')
+      redirect_uri: 'Your-Logout-redirect_url-Here' # Fill in your redirect url here (Ex. 'http://localhost:63342/mojio-js/mocha/authorize.html')
       live: false # Set to true if using the live environment
    */
 

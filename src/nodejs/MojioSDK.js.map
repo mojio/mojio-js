@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "MojioSDK.js",
+  "sourceRoot": "",
+  "sources": [
+    "MojioSDK.coffee"
+  ],
+  "names": [],
+  "mappings": ";AACA;AAAA,MAAA,sBAAA;IAAA;;;EAAA,YAAA,GAAe,OAAA,CAAQ,gBAAR;;EAEf,MAAM,CAAC,OAAP,GAAuB;;;IAKN,kBAAC,OAAD;;QAAC,UAAQ;;MAClB,0CAAM,OAAN;IADS;;;;KALuB;AAFxC"
+}

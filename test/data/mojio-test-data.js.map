@@ -6,5 +6,5 @@
     "mojio-test-data.coffee"
   ],
   "names": [],
-  "mappings": ";AAAA;AAAA,EAAA,MAAM,CAAC,OAAP,GACI;AAAA,IAAA,QAAA,EAAU,iBAAV;AAAA,IACA,QAAA,EAAU,cADV;GADJ,CAAA;AAAA"
+  "mappings": ";AAAA;EAAA,MAAM,CAAC,OAAP,GACI;IAAA,QAAA,EAAU,iBAAV;IACA,QAAA,EAAU,cADV;;AADJ"
 }
